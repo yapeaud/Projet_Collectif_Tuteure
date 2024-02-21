@@ -62,21 +62,23 @@ class EtudiantController extends Controller
     public function etudiantEvalueMembre()
     {
         // $etudiant_evalue_membres = EtudiantEvalueMembre::all();
-        // return view('etudiant.membre', compact('etudiant_evalue_membres'));
+       return view('etudiant.membre');
     }
 
     public function traitementEtudiantEvalueMembre(Request $request)
     {
         //Validation des données
         $request->validate([
-            'nom' => 'required|string|max:255',
+            'nomEtudiant' => 'required|string|max:255',
+            'nomEtudiant' => 'required|string|max:255',
             'specialite' => 'required|string|max:255',
-            'note' => 'required|string|max:20',
+            'noteMembre' => 'required|string|max:20',
         ]);
         $etudiant_evalue_membre = new EtudiantEvalueMembre;
-        $etudiant_evalue_membre->nom = $request->input('nom');
+        $etudiant_evalue_membre->nom = $request->input('nomEtudiant');
+        $etudiant_evalue_membre->prenom = $request->input('nomEtudiant');
         $etudiant_evalue_membre->specialite = $request->input('specialite');
-        $etudiant_evalue_membre->note = $request->input('note');
+        $etudiant_evalue_membre->note = $request->input('noteMembre');
         $etudiant_evalue_membre->save();
         return back()->with("successAdd", 'Note enregistrée avec succès.');
     }
