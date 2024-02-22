@@ -19,7 +19,8 @@
 
                 <h3 class="menu-title">Évaluation</h3><!-- /.menu-title -->
                 <li class="menu-item">
-                    <a href="/tuteur/dashboard/evalue/etudiant"> <i class="menu-icon fa fa-laptop"></i>Étudiant</a>
+                    <a href="/tuteur/dashboard/evalue/etudiant"> <i class="menu-icon fa fa-laptop"></i>Note de l'étudiant</a>
+                    <a href="/tuteur/dashboard/evalue/groupe"> <i class="menu-icon fa fa-laptop"></i>Note du groupe</a>
                 </li>
 
                 <h3 class="menu-title">Groupe</h3><!-- /.menu-title -->

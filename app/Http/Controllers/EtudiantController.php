@@ -61,7 +61,7 @@ class EtudiantController extends Controller
 
     public function etudiantEvalueMembre()
     {
-        // $etudiant_evalue_membres = EtudiantEvalueMembre::all();
+        //$etudiant_evalue_membres = EtudiantEvalueMembre::all();
        return view('etudiant.membre');
     }
 
@@ -70,13 +70,13 @@ class EtudiantController extends Controller
         //Validation des données
         $request->validate([
             'nomEtudiant' => 'required|string|max:255',
-            'nomEtudiant' => 'required|string|max:255',
+            'prenomEtudiant' => 'required|string|max:255',
             'specialite' => 'required|string|max:255',
             'noteMembre' => 'required|string|max:20',
         ]);
         $etudiant_evalue_membre = new EtudiantEvalueMembre;
         $etudiant_evalue_membre->nom = $request->input('nomEtudiant');
-        $etudiant_evalue_membre->prenom = $request->input('nomEtudiant');
+        $etudiant_evalue_membre->prenom = $request->input('prenomEtudiant');
         $etudiant_evalue_membre->specialite = $request->input('specialite');
         $etudiant_evalue_membre->note = $request->input('noteMembre');
         $etudiant_evalue_membre->save();

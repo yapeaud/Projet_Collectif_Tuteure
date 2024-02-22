@@ -23,6 +23,11 @@
                     <a href="/etudiant/dashboard/evalue/tuteur"> <i class="menu-icon fa fa-laptop"></i>Tuteur</a>
                 </li>
 
+                <h3 class="menu-title">Groupe</h3><!-- /.menu-title -->
+                <li class="menu-item">
+                    <a href="/etudiant/liste"> <i class="menu-icon fa fa-laptop"></i>Liste des étudiants</a>
+                </li>
+
                 <h3 class="menu-title">Livrable</h3><!-- /.menu-title -->
                 <li class="menu-item">
                     <a href="/etudiant/dashboard/rapport"> <i class="menu-icon fa fa-laptop"></i>Rapports</a>

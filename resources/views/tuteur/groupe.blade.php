@@ -1,16 +1,16 @@
 @extends('tuteur.dashboard.default')
 
 @section('title')
-    Créer un groupe
+    NOTE DU GROUPE
 @endsection
 
 @section('content')
     <main class="container mt-5">
-        <section class="row justify-content-center">
-            <article class="col-md-6">
-                <h3 class="text-center">Le tuteur crée un groupe</h3>
-                <form action="/tuteur/dashboard/groupe" method="post">
-
+        <h3 class="text-center">Note du groupe</h3>
+        <section class="justify-content-center">
+            <article>
+                <form action="/tuteur/dashboard/evalue/groupe" method="post">
+                    
                     @if (session()->has('successAdd'))
                         <div class="alert alert-success mb-4">
                             <h4>{{ session()->get('successAdd') }}</h4>
@@ -22,26 +22,53 @@
                             <h4>{{ session()->get('successDelete') }}</h4>
                         </div>
                     @endif
-
+                    
                     @csrf
-                    <div class="form-group mt-3">
-                        <label for="groupname">Saisis le nom du groupe :</label>
-                        <input type="text" class="form-control" name="groupname" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="specialty">Saisis la spécialité :</label>
-                        <input type="text" class="form-control" name="specialty" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="studentnumbers">Saisis le nombre d'étudiants :</label>
-                        <input type="number" class="form-control" name="studentnumbers" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="tutorsname">Saisis le nom du tuteur :</label>
-                        <input type="text" class="form-control" name="tutorsname" required>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Soumettre</button>
+                    <section class="form-row mt-4">
+                        <article class="form-group col-md-6">
+                            <label for="input1">Gestion des conflits</label>
+                            <input type="number" class="form-control" id="input1" placeholder="Gestion des conflits" name="gestionConflits">
+                        </article>
+                        <article class="form-group col-md-6">
+                            <label for="input2">Communication / Coordination</label>
+                            <input type="number" class="form-control" id="input2" placeholder="Communication / Coordination" name="communicationCoordination">
+                        </article>
+                    </section>
+                    <section class="form-row mt-4">
+                        <article class="form-group col-md-6">
+                            <label for="input3">Ambition / créativité du projet</label>
+                            <input type="number" class="form-control" id="input3" placeholder="Ambition / créativité du projet" name="ambitionCreativiteProjet">
+                        </article>
+                        <article class="form-group col-md-6">
+                            <label for="input4">Qualité de réalisation</label>
+                            <input type="number" class="form-control" id="input4" placeholder="Qualité de réalisation" name="qualiteRealisation">
+                        </article>
+                    </section>
+                    <section class="form-row mt-4">
+                        <article class="form-group col-md-4">
+                            <label for="input5">Réussite du projet</label>
+                            <input type="number" class="form-control" id="input5" placeholder="Réussite du projet" name="reussiteProjet">
+                        </article>
+                        <article class="form-group col-md-4">
+                            <label for="input6">Savoir rendre compte à l'écrit</label>
+                            <input type="number" class="form-control" id="input6" placeholder="Savoir rendre compte à l'écrit" name="rendreCompte">
+                        </article>
+                        <article class="form-group col-md-4">
+                            <label for="input7">Savoir justifier les choix opérés dans le projet</label>
+                            <input type="number" class="form-control" id="input7" placeholder="Savoir justifier les choix opérés dans le projet" name="justifierChoix">
+                        </article>
+                    </section>
+                    <section class="form-row mt-4">
+                        <article class="form-group col-md-6">
+                            <label for="input8">Note du groupe</label>
+                            <input type="number" class="form-control" id="input8" placeholder="Note du groupe" name="noteGroupe">
+                        </article>
+                        <article class="form-group col-md-6">
+                            <label for="input9">Observations du groupe</label>
+                            <textarea name="observationsGroupe" id="input9" rows="1" class="form-control"></textarea>
+                        </article>
+                    </section>
+                    <button type="submit" class="btn btn-primary">Enregistrer la note</button>
                 </form>
             </article>
         </section>

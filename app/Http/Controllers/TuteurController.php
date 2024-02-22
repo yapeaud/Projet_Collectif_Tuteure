@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tuteur;
 use Illuminate\Http\Request;
+use App\Models\TuteurEvalueGroupe;
 use Illuminate\Support\Facades\Hash;
 
 class TuteurController extends Controller
@@ -21,33 +22,103 @@ class TuteurController extends Controller
   public function traitementInscriptionTuteur(Request $request)
   {
     // Validation des données
-    // $request->validate([
-    //   'nom' => 'required|string|max:255',
-    //   'prenom' => 'required|string|max:255',
-    //   'contact' => 'required|string|max:255',
-    //   'email' => 'required|email|max:255',
-    //   'mdp' => 'required'
-    // //]);
-    // $tuteur = new Tuteur;
-    // $tuteur->nom = $request->input('nom');
-    // $tuteur->prenom = $request->input('prenom');
-    // $tuteur->contact = $request->input('contact');
-    // $tuteur->email = $request->input('email');
-    // $tuteur->mot_de_passe  = Hash::make($request->input('mdp'));
-    // $tuteur->save();
-    // return back()->with("successAdd", "Le tutorat a été intégré avec succès !");
+    $request->validate([
+      'nom' => 'required|string|max:255',
+      'prenom' => 'required|string|max:255',
+      'contact' => 'required|string|max:255',
+      'email' => 'required|email|max:255',
+      'mdp' => 'required'
+    ]);
+    $tuteur = new Tuteur;
+    $tuteur->nom = $request->input('nom');
+    $tuteur->prenom = $request->input('prenom');
+    $tuteur->contact = $request->input('contact');
+    $tuteur->email = $request->input('email');
+    $tuteur->mot_de_passe  = Hash::make($request->input('mdp'));
+    $tuteur->save();
+    return back()->with("successAdd", "Le tutorat a été intégré avec succès !");
   }
 
   public function listeTuteur()
   {
-    // $tuteurs = Tuteur::all();
-    // return view('tuteur.liste', compact('tuteurs'));
+     $tuteurs = Tuteur::all();
+     return view('tuteur.liste', compact('tuteurs'));
   }
 
   public function tuteurDasboard()
   {
     return view('tuteur.dashboard');
   }
+
+  public function tuteurEvalueGroupe()
+  {
+    $tuteur_evalue_groupes = TuteurEvalueGroupe::all();
+    return view('tuteur.groupe', compact('tuteur_evalue_groupes'));
+  }
+   
+  public function traitementTuteurEvalueGroupe(Request $request)
+  {
+    // Validation des données
+     $request->validate([
+      'gestionConflits' => 'required|integer|max:255',
+      'communicationCoordination' => 'required|integer|max:255',
+      'ambitionCreativiteProjet' => 'required|integer|max:255',
+      'qualiteRealisation' => 'required|integer|max:255',
+      'reussiteProjet' => 'required|integer|max:255',
+      'rendreCompte' => 'required|integer|max:255',
+      'justifierChoix' => 'required|integer|max:255',
+      'noteGroupe' => 'required|integer|max:255',
+      'observationsGroupe' => 'required|string|max:255',
+    ]);
+
+    $tuteur_evalue_groupe = new TuteurEvalueGroupe;
+    $tuteur_evalue_groupe->gestion_conflits = $request->input('gestionConflits');
+    $tuteur_evalue_groupe->communication_coordination = $request->input('communicationCoordination');
+    $tuteur_evalue_groupe->ambition_creativite_projet = $request->input('ambitionCreativiteProjet');
+    $tuteur_evalue_groupe->qualite_realisation = $request->input('qualiteRealisation');
+    $tuteur_evalue_groupe->reussite_projet = $request->input('reussiteProjet');
+    $tuteur_evalue_groupe->savoir_rendre_compte = $request->input('rendreCompte');
+    $tuteur_evalue_groupe->savoir_justifier_choix_projet = $request->input('justifierChoix');
+    $tuteur_evalue_groupe->note_groupe = $request->input('noteGroupe');
+    $tuteur_evalue_groupe->observations_groupe = $request->input('observationsGroupe');
+    $tuteur_evalue_groupe->save();
+     return back()->with("successAdd", 'La note du groupe a été créé avec succès.');
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   public function tuteurEvalueEtudiant()
   {
     // $tuteur_evalue_etudiants = TuteurEvalueEtudiant::all();
@@ -71,7 +142,7 @@ class TuteurController extends Controller
   public function tuteurCreeGroupe()
   {
   //   $tuteur_cree_groupes = TuteurCreeGroupe::all();
-  //   return view('tuteur.groupe', compact('tuteur_cree_groupes'));
+  //   return view('tuteur.creergroupe', compact('tuteur_cree_groupes'));
    }
 
   public function traitementTuteurCreeGroupe(Request $request)

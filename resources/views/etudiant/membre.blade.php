@@ -7,7 +7,7 @@
 @section('content')
     <main class="container mt-5">
         <h3 class="text-center">Évaluation</h3>
-        <section class="row justify-content-center">
+        <section class="justify-content-center">
             <article>
                 <form action="/etudiant/dashboard/evalue/membre" method="post">
 
@@ -41,7 +41,20 @@
                         </article>
                         <article class="form-group col-md-6">
                             <label for="inputNote">Note</label>
-                            <input type="number" name="noteMembre" class="form-control" id="inputNote" placeholder="Note de l'évaluer">
+                            <select id="inputNote" class="form-control" name="noteMembre">
+                                <option selected>Note de l'évaluer</option>
+                                <option>0</option>
+                                <option>2</option>
+                                <option>4</option>
+                                <option>6</option>
+                                <option>8</option>
+                                <option>10</option>
+                                <option>12</option>
+                                <option>14</option>
+                                <option>16</option>
+                                <option>18</option>
+                                <option>20</option>
+                            </select>
                         </article>
                     </section>
                     <button type="submit" class="btn btn-primary">Enregistrer l'évaluation</button>
