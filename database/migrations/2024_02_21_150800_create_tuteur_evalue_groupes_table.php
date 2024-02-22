@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('savoir_rendre_compte');
             $table->integer('savoir_justifier_choix_projet');
             $table->integer('note_groupe');
-            $table->integer('observations_groupe');
+            $table->string('observations_groupe');
             $table->timestamps();
         });
     }

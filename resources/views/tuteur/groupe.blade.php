@@ -27,41 +27,41 @@
                     <section class="form-row mt-4">
                         <article class="form-group col-md-6">
                             <label for="input1">Gestion des conflits</label>
-                            <input type="number" class="form-control" id="input1" placeholder="Gestion des conflits" name="gestionConflits">
+                            <input type="number" class="form-control" id="input1" placeholder="/2" name="gestionConflits">
                         </article>
                         <article class="form-group col-md-6">
                             <label for="input2">Communication / Coordination</label>
-                            <input type="number" class="form-control" id="input2" placeholder="Communication / Coordination" name="communicationCoordination">
+                            <input type="number" class="form-control" id="input2" placeholder="/1" name="communicationCoordination">
                         </article>
                     </section>
                     <section class="form-row mt-4">
                         <article class="form-group col-md-6">
                             <label for="input3">Ambition / créativité du projet</label>
-                            <input type="number" class="form-control" id="input3" placeholder="Ambition / créativité du projet" name="ambitionCreativiteProjet">
+                            <input type="number" class="form-control" id="input3" placeholder="/4" name="ambitionCreativiteProjet">
                         </article>
                         <article class="form-group col-md-6">
                             <label for="input4">Qualité de réalisation</label>
-                            <input type="number" class="form-control" id="input4" placeholder="Qualité de réalisation" name="qualiteRealisation">
+                            <input type="number" class="form-control" id="input4" placeholder="/4" name="qualiteRealisation">
                         </article>
                     </section>
                     <section class="form-row mt-4">
                         <article class="form-group col-md-4">
                             <label for="input5">Réussite du projet</label>
-                            <input type="number" class="form-control" id="input5" placeholder="Réussite du projet" name="reussiteProjet">
+                            <input type="number" class="form-control" id="input5" placeholder="/3" name="reussiteProjet">
                         </article>
                         <article class="form-group col-md-4">
                             <label for="input6">Savoir rendre compte à l'écrit</label>
-                            <input type="number" class="form-control" id="input6" placeholder="Savoir rendre compte à l'écrit" name="rendreCompte">
+                            <input type="number" class="form-control" id="input6" placeholder="/3" name="rendreCompte">
                         </article>
                         <article class="form-group col-md-4">
                             <label for="input7">Savoir justifier les choix opérés dans le projet</label>
-                            <input type="number" class="form-control" id="input7" placeholder="Savoir justifier les choix opérés dans le projet" name="justifierChoix">
+                            <input type="number" class="form-control" id="input7" placeholder="/3" name="justifierChoix">
                         </article>
                     </section>
                     <section class="form-row mt-4">
                         <article class="form-group col-md-6">
                             <label for="input8">Note du groupe</label>
-                            <input type="number" class="form-control" id="input8" placeholder="Note du groupe" name="noteGroupe">
+                            <input type="number" class="form-control" id="input8" placeholder="Note du groupe/20" name="noteGroupe">
                         </article>
                         <article class="form-group col-md-6">
                             <label for="input9">Observations du groupe</label>

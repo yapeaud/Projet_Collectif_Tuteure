@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tuteur;
 use Illuminate\Http\Request;
 use App\Models\TuteurEvalueGroupe;
+use App\Models\TuteurEvalueEtudiant;
 use Illuminate\Support\Facades\Hash;
 
 class TuteurController extends Controller
@@ -82,32 +83,9 @@ class TuteurController extends Controller
     $tuteur_evalue_groupe->note_groupe = $request->input('noteGroupe');
     $tuteur_evalue_groupe->observations_groupe = $request->input('observationsGroupe');
     $tuteur_evalue_groupe->save();
-     return back()->with("successAdd", 'La note du groupe a été créé avec succès.');
+     return back()->with("successAdd", 'Note enregistrée avec succès.');
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -121,24 +99,44 @@ class TuteurController extends Controller
 
   public function tuteurEvalueEtudiant()
   {
-    // $tuteur_evalue_etudiants = TuteurEvalueEtudiant::all();
-    // return view('tuteur.etudiant', compact('tuteur_evalue_etudiants'));;
+    //$tuteur_evalue_etudiants = TuteurEvalueEtudiant::all();
+    return view('tuteur.etudiant');
   }
 
   public function traitementTuteurEvalueEtudiant(Request $request)
   {
     // Validation des données
-     //$request->validate([
-    //   'evalue' => 'required|string|max:255',
-    //   'note' => 'required|string|max:20',
-    //]);
+     $request->validate([
+      'participationResolutionConflits' => 'required|integer|max:255',
+      'implicationCoordination' => 'required|integer|max:255',
+      'ampleurQualiteTachesRealisees' => 'required|integer|max:255',
+      'priseInitiatives' => 'required|integer|max:255',
+      'connaitreProjet' => 'required|integer|max:255',
+      'savoirRepondreQuestions' => 'required|integer|max:255',
+      'noteIndividuelle' => 'required|integer|max:255',
+      'noteDefinitiveEtudiant' => 'required|integer|max:255',
+      'observationsIndividuelle' => 'required|string|max:255',
+    ]);
+
+    $tuteur_evalue_etudiant = new TuteurEvalueEtudiant;
+    $tuteur_evalue_etudiant->resolution_conflits = $request->input('participationResolutionConflits');
+    $tuteur_evalue_etudiant->implication_coordination = $request->input('implicationCoordination');
+    $tuteur_evalue_etudiant->qualite_taches = $request->input('ampleurQualiteTachesRealisees');
+    $tuteur_evalue_etudiant->prise_initiatives = $request->input('priseInitiatives');
+    $tuteur_evalue_etudiant->connaitre_projet = $request->input('connaitreProjet');
+    $tuteur_evalue_etudiant->repondre_questions = $request->input('savoirRepondreQuestions');
+    $tuteur_evalue_etudiant->note_individuelle = $request->input('noteIndividuelle');
+    $tuteur_evalue_etudiant->note_definitive = $request->input('noteDefinitiveEtudiant');
+    $tuteur_evalue_etudiant->observations_individuelle = $request->input('observationsIndividuelle');
+    $tuteur_evalue_etudiant->save();
+    return back()->with("successAdd", 'Note enregistrée avec succès.');
    
   }
- // $tuteur_evalue_etudiant = new TuteurEvalueEtudiant;
-    // $tuteur_evalue_etudiant->nom_d_evalue = $request->input('evalue');
-    // $tuteur_evalue_etudiant->note = $request->input('note');
-    // $tuteur_evalue_etudiant->save();
-    // return back()->with("successAdd", 'Note enregistrée avec succès.');
+ 
+
+
+
+
   public function tuteurCreeGroupe()
   {
   //   $tuteur_cree_groupes = TuteurCreeGroupe::all();
