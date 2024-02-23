@@ -87,16 +87,6 @@ class TuteurController extends Controller
 
   }
 
-
-
-
-
-
-
-
-
-
-
   public function tuteurEvalueEtudiant()
   {
     //$tuteur_evalue_etudiants = TuteurEvalueEtudiant::all();
@@ -137,6 +127,21 @@ class TuteurController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   public function tuteurCreeGroupe()
   {
   //   $tuteur_cree_groupes = TuteurCreeGroupe::all();
@@ -161,6 +166,23 @@ class TuteurController extends Controller
     // $tuteur_cree_groupe->save();
     // return back()->with("successAdd", 'Le groupe a été créé avec succès.');
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   public function tuteurAttribueRole()
   {

@@ -48,6 +48,13 @@ class EtudiantController extends Controller
         return view('etudiant.liste', compact('etudiants'));
     }
 
+    
+    public function groupeEtudiant()
+    {
+        $etudiants = Etudiant::all();
+        return view('etudiant.groupe', compact('etudiants'));
+    }
+
     public function etudiantDashboard()
     {
         return view('etudiant.dashboard');

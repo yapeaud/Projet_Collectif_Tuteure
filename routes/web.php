@@ -24,8 +24,11 @@ Route::get('/', function () {
 Route::get('/etudiant/connexion', [EtudiantController::class, 'index'])->name('connexion');
 Route::get('/etudiant/inscription', [EtudiantController::class, 'inscription'])->name('inscription');
 Route::post('/etudiant/inscription', [EtudiantController::class, 'traitementInscriptionEtudiant'])->name('traitementInscriptionEtudiant');
-Route::get('/etudiant/liste', [EtudiantController::class, 'listeEtudiant'])->name('listeEtudiant');
 Route::get('/etudiant/dashboard', [EtudiantController::class, 'etudiantDashboard'])->name('etudiantDashboard');
+
+#Mon groupe
+Route::get('/etudiant/liste', [EtudiantController::class, 'listeEtudiant'])->name('listeEtudiant');
+Route::get('/etudiant/groupe', [EtudiantController::class, 'groupeEtudiant'])->name('groupeEtudiant');
 
 #L'étudiant évalue les membres de son groupe.
 Route::get('/etudiant/dashboard/evalue/membre', [EtudiantController::class, 'etudiantEvalueMembre'])->name('etudiantEvalueMembre');
