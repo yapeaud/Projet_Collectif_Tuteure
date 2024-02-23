@@ -21,7 +21,7 @@
 
                 @foreach ($etudiants as $etudiant)
                     <tr>
-                        <th scope="row">{{ $etudiant->id }}</th>
+                        <th scope="row">{{ $etudiant->id_etudiant }}</th>
                         <td>{{ $etudiant->nom }}</td>
                         <td>{{ $etudiant->prenom }}</td>
                         <td>{{ $etudiant->contact }}</td>

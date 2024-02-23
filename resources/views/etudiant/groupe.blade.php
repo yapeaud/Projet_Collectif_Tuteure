@@ -20,10 +20,10 @@
 
                 @foreach ($etudiants as $etudiant)
                     <tr>
-                        <th scope="row">{{ $etudiant->id }}</th>
+                        {{-- <th scope="row">{{ $etudiant->id }}</th>
                         <td>{{ $etudiant->nom }} {{ $etudiant->prenom }}</td>
                         <td>{{ $etudiant->email }}</td>
-                        <td>{{ $etudiant->contact }}</td>
+                        <td>{{ $etudiant->contact }}</td> --}}
                     </tr>
                 @endforeach
 
