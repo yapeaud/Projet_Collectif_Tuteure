@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SemController;
 use App\Http\Controllers\TuteurController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\InternshipController;
@@ -81,8 +82,8 @@ Route::get('/tuteur/dashboard/evalue/groupe', [TuteurController::class, 'tuteurE
 Route::post('/tuteur/dashboard/evalue/groupe', [TuteurController::class, 'traitementTuteurEvalueGroupe'])->name('traitementTuteurEvalueGroupe');
 
 #Le tuteur crée un groupe
-Route::get('/tuteur/dashboard/groupe', [TuteurController::class, 'tuteurCreeGroupe'])->name('tuteurCreeGroupe');
-Route::post('/tuteur/dashboard/groupe', [TuteurController::class, 'traitementTuteurCreeGroupe'])->name('traitementTuteurCreeGroupe');
+Route::get('/tuteur/dashboard/creegroupe', [TuteurController::class, 'tuteurCreeGroupe'])->name('tuteurCreeGroupe');
+Route::post('/tuteur/dashboard/creegroupe', [TuteurController::class, 'traitementTuteurCreeGroupe'])->name('traitementTuteurCreeGroupe');
 
 #Le tuteur attribue un rôle
 Route::get('/tuteur/dashboard/groupe/role', [TuteurController::class, 'tuteurAttribueRole'])->name('tuteurAttribueRole');
@@ -100,7 +101,7 @@ Route::post('/tuteur/dashboard/rapport', [TuteurController::class, 'traitementTu
 
 
 
-
+  
 
 
 
@@ -117,23 +118,23 @@ Route::post('/tuteur/dashboard/rapport', [TuteurController::class, 'traitementTu
 
 
 /* ---------- RESPONSABLE DU SERVICE STAGE ET EMPLOI ----------- */
-Route::get('/internship/connexion', [InternshipController::class, 'index'])->name('connexion');
-Route::get('/internship/inscription', [InternshipController::class,'inscription'])->name('inscription');
-Route::post('/internship/inscription', [InternshipController::class,'traitementInscriptionInternship'])->name('traitementInscriptionInternship');
-Route::get('/internship/liste', [InternshipController::class, 'listeInternship'])->name('listeInternship');
-Route::get('/internship/dashboard', [InternshipController::class, 'internshipDashboard'])->name('internshipDashboard');
+Route::get('/sem/connexion', [SemController::class, 'index'])->name('connexion');
+Route::get('/sem/inscription', [SemController::class,'inscription'])->name('inscription');
+Route::post('/sem/inscription', [SemController::class,'traitementInscriptionSem'])->name('traitementInscriptionSem');
+Route::get('/sem/liste', [SemController::class, 'listeSem'])->name('listeSem');
+Route::get('/sem/dashboard', [SemController::class, 'semDashboard'])->name('semDashboard');
 
 #L'internship note le tuteur
-Route::get('/internship/dashboard/note', [InternshipController::class, 'internshipNoteTuteur'])->name('internshipNoteTuteur');
-Route::post('/internship/dashboard/note', [InternshipController::class, 'traitementInternshipNoteTuteur'])->name('traitementInternshipNoteTuteur');
+Route::get('/sem/dashboard/note', [SemController::class, 'semNoteTuteur'])->name('semNoteTuteur');
+Route::post('/sem/dashboard/note', [SemController::class, 'traitementSemNoteTuteur'])->name('traitementSemNoteTuteur');
 
 #Gestion du tuteur par le responsable du service stage et emploi
-Route::get('/internship/dashboard/gere', [InternshipController::class, 'internshipGereTuteur'])->name('internshipGereTuteur');
-Route::post('/internship/dashboard/gere', [InternshipController::class, 'traitementInternshipGereTuteur'])->name('traitementInternshipGereTuteur');
+Route::get('/sem/dashboard/gere', [SemController::class, 'semGereTuteur'])->name('semGereTuteur');
+Route::post('/sem/dashboard/gere', [SemController::class, 'traitementSemGereTuteur'])->name('traitementSemGereTuteur');
 
 #Attribution des rôles par le responsable du service stage et emploi
-Route::get('/internship/dashboard/attribue', [InternshipController::class, 'internshipAttribueEtudiant'])->name('internshipAttribueEtudiant');
-Route::post('/internship/dashboard/attribue', [InternshipController::class, 'traitementInternshipAttribueEtudiant'])->name('traitementInternshipAttribueEtudiant');
+Route::get('/sem/dashboard/attribue', [SemController::class, 'semAttribueEtudiant'])->name('semAttribueEtudiant');
+Route::post('/sem/dashboard/attribue', [SemController::class, 'traitementSemAttribueEtudiant'])->name('traitementSemAttribueEtudiant');
 
 
 /* ---------- RESPONSABLE DE LA PÉDAGOGIE ----------- */

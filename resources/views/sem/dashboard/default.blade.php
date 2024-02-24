@@ -34,7 +34,7 @@
 
     <!-- Left Panel -->
 
-    @include('internship.dashboard.aside')
+    @include('sem.dashboard.aside')
     
     <!-- /#left-panel -->
 

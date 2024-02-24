@@ -1,4 +1,4 @@
-@extends('internship.dashboard.default')
+@extends('sem.dashboard.default')
 
 @section('title')
     Tableau de bord

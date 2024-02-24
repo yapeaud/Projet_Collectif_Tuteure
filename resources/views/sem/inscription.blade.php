@@ -33,7 +33,7 @@ Inscription
                     @endforeach
                 </div>    
             @endif --}}
-            <form class="form-signin" method="POST" action="/internship/inscription">
+            <form class="form-signin" method="POST" action="/sem/inscription">
               @csrf             
               
                 <div class="form-group">

@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Tuteur;
 use Illuminate\Http\Request;
+use App\Models\TuteurCreeGroupe;
 use App\Models\TuteurEvalueGroupe;
 use App\Models\TuteurEvalueEtudiant;
 use Illuminate\Support\Facades\Hash;
 
 class TuteurController extends Controller
 {
-    public function index()
+  public function index()
   {
     return view('tuteur.index');
   }
@@ -42,8 +43,8 @@ class TuteurController extends Controller
 
   public function listeTuteur()
   {
-     $tuteurs = Tuteur::all();
-     return view('tuteur.liste', compact('tuteurs'));
+    $tuteurs = Tuteur::all();
+    return view('tuteur.liste', compact('tuteurs'));
   }
 
   public function tuteurDasboard()
@@ -56,11 +57,11 @@ class TuteurController extends Controller
     $tuteur_evalue_groupes = TuteurEvalueGroupe::all();
     return view('tuteur.groupe', compact('tuteur_evalue_groupes'));
   }
-   
+
   public function traitementTuteurEvalueGroupe(Request $request)
   {
     // Validation des données
-     $request->validate([
+    $request->validate([
       'gestionConflits' => 'required|integer|max:255',
       'communicationCoordination' => 'required|integer|max:255',
       'ambitionCreativiteProjet' => 'required|integer|max:255',
@@ -83,8 +84,7 @@ class TuteurController extends Controller
     $tuteur_evalue_groupe->note_groupe = $request->input('noteGroupe');
     $tuteur_evalue_groupe->observations_groupe = $request->input('observationsGroupe');
     $tuteur_evalue_groupe->save();
-     return back()->with("successAdd", 'Note enregistrée avec succès.');
-
+    return back()->with("successAdd", 'Note enregistrée avec succès.');
   }
 
   public function tuteurEvalueEtudiant()
@@ -96,7 +96,7 @@ class TuteurController extends Controller
   public function traitementTuteurEvalueEtudiant(Request $request)
   {
     // Validation des données
-     $request->validate([
+    $request->validate([
       'participationResolutionConflits' => 'required|integer|max:255',
       'implicationCoordination' => 'required|integer|max:255',
       'ampleurQualiteTachesRealisees' => 'required|integer|max:255',
@@ -120,9 +120,8 @@ class TuteurController extends Controller
     $tuteur_evalue_etudiant->observations_individuelle = $request->input('observationsIndividuelle');
     $tuteur_evalue_etudiant->save();
     return back()->with("successAdd", 'Note enregistrée avec succès.');
-   
   }
- 
+
 
 
 
@@ -144,27 +143,31 @@ class TuteurController extends Controller
 
   public function tuteurCreeGroupe()
   {
-  //   $tuteur_cree_groupes = TuteurCreeGroupe::all();
-  //   return view('tuteur.creergroupe', compact('tuteur_cree_groupes'));
-   }
+    //   $tuteur_cree_groupes = TuteurCreeGroupe::all();
+    return view('tuteur.creergroupe');
+  }
 
   public function traitementTuteurCreeGroupe(Request $request)
   {
     // Validation des données
-    //$request->validate([
-      // 'groupname' => 'required|string|max:255',
-      // 'specialty' => 'required|string|max:255',
-      // 'studentnumbers' => 'required|integer|max:20',
-      // 'tutorsname' => 'required|string|max:255'
-    //]);
+    $request->validate([
+      'nomResponsable' => 'required|string|max:255',
+      'codeGroupe' => 'required|string|max:255',
+      'nomEtudiant' => 'required|integer|max:255',
+      'prenomsEtudiant' => 'required|string|max:255',
+      'email' => 'required|string|max:255',
+      'contact' => 'required|string|max:255',
+    ]);
 
-    // $tuteur_cree_groupe = new TuteurCreeGroupe;
-    // $tuteur_cree_groupe->nom_du_groupe = $request->input('groupname');
-    // $tuteur_cree_groupe->specialite = $request->input('specialty');
-    // $tuteur_cree_groupe->nombre_d_etudiants = $request->input('studentnumbers');
-    // $tuteur_cree_groupe->nom_du_tuteur = $request->input('tutorsname');
-    // $tuteur_cree_groupe->save();
-    // return back()->with("successAdd", 'Le groupe a été créé avec succès.');
+    $tuteur_cree_groupe = new TuteurCreeGroupe;
+    $tuteur_cree_groupe->nom_responsable = $request->input('nomResponsable');
+    $tuteur_cree_groupe->code_groupe = $request->input('codeGroupe');
+    $tuteur_cree_groupe->nom_etudiant = $request->input('nomEtudiant');
+    $tuteur_cree_groupe->prenom_etudiant = $request->input('prenomsEtudiant');
+    $tuteur_cree_groupe->email = $request->input('email');
+    $tuteur_cree_groupe->contact = $request->input('contact');
+    $tuteur_cree_groupe->save();
+    return back()->with("successAdd", 'Le groupe a été créé avec succès.');
   }
 
 
@@ -182,7 +185,7 @@ class TuteurController extends Controller
 
 
 
-  
+
 
   public function tuteurAttribueRole()
   {
@@ -194,9 +197,9 @@ class TuteurController extends Controller
   {
     // Validation des données
     //$request->validate([
-      // 'groupname' => 'required|string|max:255',
-      // 'studentname' => 'required|string|max:255',
-      // 'assignedrole' => 'required|string|max:255',
+    // 'groupname' => 'required|string|max:255',
+    // 'studentname' => 'required|string|max:255',
+    // 'assignedrole' => 'required|string|max:255',
     //]);
 
     // $tuteur_attribue_role = new TuteurAttribueRole;

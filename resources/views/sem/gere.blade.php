@@ -1,4 +1,4 @@
-@extends('internship.dashboard.default')
+@extends('sem.dashboard.default')
 
 @section('title')
 Gestion des tuteurs
@@ -10,7 +10,7 @@ Gestion des tuteurs
   <section class="row justify-content-center">
     <article class="col-md-6">
       <h3 class="text-center">Gère les tuteurs</h3>
-      <form class="form-signin" method="POST" action="/internship/dashboard/gere">
+      <form class="form-signin" method="POST" action="/sem/dashboard/gere">
         @if(session()->has('successAdd'))
         <div class="alert alert-success mb-4">
           <h4>{{ session()->get('successAdd') }}</h4>
