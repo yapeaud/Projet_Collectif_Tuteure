@@ -170,7 +170,7 @@
 <!-- Header-->
 
 
-<div class="breadcrumbs">
+{{-- <div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
@@ -187,9 +187,9 @@
                     </div>
                 </div>
             </div>
-</div>
+</div> --}}
 
-        <div class="content mt-3">
+        {{-- <div class="content mt-3">
 
             <div class="col-sm-12">
                 <div class="alert  alert-success alert-dismissible fade show" role="alert">
@@ -199,7 +199,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         {{-- <div class="col-sm-6 col-lg-3">    
         </div> --}}

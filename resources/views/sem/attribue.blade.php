@@ -1,4 +1,4 @@
-@extends('internship.dashboard.default')
+@extends('sem.dashboard.default')
 
 @section('title')
     Gestion des tuteurs
@@ -6,8 +6,8 @@
 
 @section('content')
     <main class="container mt-5">
-        <section class="row justify-content-center">
-            <article class="col-md-6">
+        <section class=" justify-content-center">
+            <article>
                 <h3 class="text-center">Attribue des étudiants</h3>
                 <form action="/sem/dashboard/attribue" method="post">
 
@@ -25,16 +25,28 @@
 
                     @csrf
 
-                    <div class="form-group mt-3">
-                        <label for="tutorname">Saisissez le nom et prénoms du tuteur</label>
-                        <input type="text" class="form-control" name="tutorname" required>
-                    </div>
+                    <section class="form-row mt-4">
+                        <article class="form-group col-md-6">
+                            <label for="inputNomTuteur">Nom du tuteur</label>
+                            <input type="text" class="form-control" id="inputNomTuteur" name="inputNomTuteur">
+                        </article>
+                        <article class="form-group col-md-6">
+                            <label for="inputPenomTuteur">Prénom du tuteur</label>
+                            <input type="text" class="form-control" id="inputPenomTuteur" name="inputPenomTuteur">
+                        </article>
+                    </section>
+                    <section class="form-row">
+                        <article class="form-group col-md-6">
+                            <label for="inputNomEtudiant">Nom de l'étudiant</label>
+                            <input type="text" class="form-control" id="inputNomEtudiant" name="inputNomEtudiant">
+                        </article>
+                        <article class="form-group col-md-6">
+                            <label for="inputPenomEtudiant">Prénom de l'étudiant</label>
+                            <input type="text" class="form-control" id="inputPenomEtudiant" name="inputPenomEtudiant">
+                        </article>
+                    </section>
 
-                    <div class="form-group">
-                        <label for="studentname">Attribuez un étudiant au tuteur</label>
-                        <input type="text" class="form-control" name="studentname" required>
-                    </div>
-
+        
                     <button type="submit" class="btn btn-primary">Soumettre</button>
                 </form>
             </article>
