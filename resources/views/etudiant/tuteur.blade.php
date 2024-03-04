@@ -1,4 +1,4 @@
-@extends('etudiant.dashboard.default')
+ @extends('etudiant.dashboard.default')
 
 @section('title')
     Évaluation tuteur par étudiant
@@ -247,7 +247,7 @@
                                 <option>Pas du tout d'accord</option>
                                 <option>Pas d'accord</option>
                                 <option>plus ou moins d'accord</option>
-                                <option> D'accord</option>
+                                  <option> D'accord</option>
                                 <option>Tout à fait d'accord</option>
                             </select>
                         </article>
@@ -268,7 +268,7 @@
                                 <option>0</option>
                                 <option>0,25</option>
                                 <option>0,5</option>
-                                <option>0,5</option>
+                                <option>0,75</option>
                                 <option>1</option>
                             </select>
                         </article>

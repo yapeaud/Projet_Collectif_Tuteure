@@ -13,19 +13,22 @@
                     <th scope="col">#</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
-                    <th scope="col">Contact</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Spécialité</th>
                 </tr>
             </thead>
             <tbody>
 
                 @foreach ($tuteurs as $tuteur)
                     <tr>
-                        <th scope="row">{{ $tuteur->id }}</th>
-                        <td>{{ $tuteur->nom }}</td>
-                        <td>{{ $tuteur->prenom }}</td>
-                        <td>{{ $tuteur->contact }}</td>
+                        <th scope="row">{{ $tuteur->id_tuteur }}</th>
+                        <td>{{ $tuteur->nom_tuteur }}</td>
+                        <td>{{ $tuteur->prenom_tuteur }}</td>
                         <td>{{ $tuteur->email }}</td>
+                        <td>{{ $tuteur->telephone }}</td>
+                        <td>{{ $tuteur->specialite }}</td>
+                       
                     </tr>
                 @endforeach
 

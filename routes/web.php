@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 /* ---------- ETUDIANT ----------- */
 Route::get('/etudiant/connexion', [EtudiantController::class, 'index'])->name('connexion');
+Route::post('/etudiant/connexion', [EtudiantController::class, 'traitementConnexion'])->name('traitementConnexion');
 Route::get('/etudiant/inscription', [EtudiantController::class, 'inscription'])->name('inscription');
 Route::post('/etudiant/inscription', [EtudiantController::class, 'traitementInscriptionEtudiant'])->name('traitementInscriptionEtudiant');
 Route::get('/etudiant/dashboard', [EtudiantController::class, 'etudiantDashboard'])->name('etudiantDashboard');
@@ -43,33 +44,9 @@ Route::post('/etudiant/dashboard/evalue/tuteur', [EtudiantController::class, 'tr
 Route::get('/etudiant/dashboard/rapport', [EtudiantController::class, 'etudiantRapport'])->name('etudiantRapport');
 Route::post('/etudiant/dashboard/rapport', [EtudiantController::class, 'traitementEtudiantRapport'])->name('traitementEtudiantRapport');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ---------- TUTEURS ----------- */
 Route::get('/tuteur/connexion', [TuteurController::class, 'index'])->name('connexion');
+Route::post('/tuteur/connexion', [TuteurController::class, 'traitementConnexionTuteur'])->name('traitementConnexionTuteur');
 Route::get('/tuteur/inscription', [TuteurController::class,'inscription'])->name('inscription');
 Route::post('/tuteur/inscription', [TuteurController::class,'traitementInscriptionTuteur'])->name('traitementInscriptionTuteur');
 Route::get('/tuteur/liste', [TuteurController::class, 'listeTuteur'])->name('listeTiteur');
@@ -80,10 +57,12 @@ Route::get('/tuteur/dashboard/evalue/etudiant', [TuteurController::class, 'tuteu
 Route::post('/tuteur/dashboard/evalue/etudiant', [TuteurController::class, 'traitementTuteurEvalueEtudiant'])->name('traitementTuteurEvalueEtudiant');
 Route::get('/tuteur/dashboard/evalue/groupe', [TuteurController::class, 'tuteurEvalueGroupe'])->name('tuteurEvalueGroupe');
 Route::post('/tuteur/dashboard/evalue/groupe', [TuteurController::class, 'traitementTuteurEvalueGroupe'])->name('traitementTuteurEvalueGroupe');
+Route::get('/tuteur/dashboard/evalue/realisation',[TuteurController::class,'phaseRealisationProjet'])->name('phaseRealisationProjet');
+Route::post('/tuteur/dashboard/evalue/realisation',[TuteurController::class,'traitementPhaseRealisationProjet'])->name('traitementPhaseRealisationProjet');
 
 #Le tuteur crée un groupe
-Route::get('/tuteur/dashboard/creegroupe', [TuteurController::class, 'tuteurCreeGroupe'])->name('tuteurCreeGroupe');
-Route::post('/tuteur/dashboard/creegroupe', [TuteurController::class, 'traitementTuteurCreeGroupe'])->name('traitementTuteurCreeGroupe');
+Route::get('/tuteur/dashboard/creergroupe', [TuteurController::class, 'creerGroupe'])->name('creerGroupe');
+Route::post('/tuteur/dashboard/creergroupe', [TuteurController::class, 'traitemenCreerGroupe'])->name('traitemenCreerGroupe');
 
 #Le tuteur attribue un rôle
 Route::get('/tuteur/dashboard/groupe/role', [TuteurController::class, 'tuteurAttribueRole'])->name('tuteurAttribueRole');

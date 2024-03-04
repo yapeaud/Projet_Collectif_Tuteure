@@ -44,15 +44,27 @@
                 <label for="prenom">Prénom :</label>
                 <input type="text" class="form-control" id="prenom" placeholder="Entrez votre prénom" name="prenom">
               </div>
-            
-            <div class="form-group">
-              <label for="contact">Contact :</label>
-              <input type="text" class="form-control" id="contact" placeholder="Entrez votre numéro de téléphone" name="contact">
-            </div>
             <div class="form-group">
               <label for="email">Email :</label>
               <input type="email" class="form-control" id="email" placeholder="Entrez votre email" name="email">
             </div>
+            <div class="form-group">
+              <label for="tel">Téléphone :</label>
+              <input type="text" class="form-control" id="tel" placeholder="Entrez votre numéro de téléphone" name="tel">
+          </div>
+          <div class="form-group">
+              <label for="specialite">Spécialité</label>
+              <select class="form-control" name="specialite" id="specialite">
+                  <option selected>Choisir ta spécialité</option>
+                  <option>BD</option>
+                  <option>DA e-Serv</option>
+                  <option>MMX</option>
+                  <option>COM</option>
+                  <option>CMD</option>
+                  <option>ATD</option>
+                  <option>STG</option>
+              </select>
+          </div>
             <div class="form-group">
               <label for="password">Mot de passe :</label>
               <input type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe" name="mdp">

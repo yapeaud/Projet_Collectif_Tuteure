@@ -3,17 +3,48 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tuteur;
+use App\Models\CreerGroupe;
 use Illuminate\Http\Request;
+use App\Models\TuteurRapport;
 use App\Models\TuteurCreeGroupe;
+use App\Models\TuteurCreerGroupe;
+use App\Models\TuteurAttribueRole;
 use App\Models\TuteurEvalueGroupe;
+use Illuminate\Support\Facades\DB;
 use App\Models\TuteurEvalueEtudiant;
 use Illuminate\Support\Facades\Hash;
+use App\Models\PhaseRealisationProjet;
 
 class TuteurController extends Controller
 {
   public function index()
   {
     return view('tuteur.index');
+  }
+
+  public function traitementConnexionTuteur(Request $request)
+  {
+  //   //Validation des données
+  //   $request->validate([
+  //     'email' => 'required|email|max:255',
+  //     'mdp' => 'required|string|min:6',
+  // ]);
+
+  // $tableName  = 'tuteurs';//A modifier la table
+
+  // $conn = array(
+
+  //     'email'  =>  $request->input('email'),
+  //     'mot_de_passe' => $request->input('mdp')
+  // );
+  // $user = DB::table($tableName)->where('email', $conn['email'])->first();
+
+  // if ($user && password_verify($conn['mot_de_passe'], $user->mot_de_passe)) {
+  //     // Authentification réussie
+  //     return redirect()->route('tuteurDasboard');
+  // } else {
+  //     return redirect()->back()->withErrors(['errors' => 'Email ou mot de passe incorrect.']);
+  // }
   }
 
   public function inscription()
@@ -27,15 +58,17 @@ class TuteurController extends Controller
     $request->validate([
       'nom' => 'required|string|max:255',
       'prenom' => 'required|string|max:255',
-      'contact' => 'required|string|max:255',
       'email' => 'required|email|max:255',
+      'tel' => 'required|string|max:255',
+      'specialite' => 'required|string|max:255',
       'mdp' => 'required'
     ]);
     $tuteur = new Tuteur;
-    $tuteur->nom = $request->input('nom');
-    $tuteur->prenom = $request->input('prenom');
-    $tuteur->contact = $request->input('contact');
+    $tuteur->nom_tuteur = $request->input('nom');
+    $tuteur->prenom_tuteur = $request->input('prenom');
     $tuteur->email = $request->input('email');
+    $tuteur->telephone = $request->input('tel');
+    $tuteur->specialite = $request->input('specialite');
     $tuteur->mot_de_passe  = Hash::make($request->input('mdp'));
     $tuteur->save();
     return back()->with("successAdd", "Le tutorat a été intégré avec succès !");
@@ -54,8 +87,8 @@ class TuteurController extends Controller
 
   public function tuteurEvalueGroupe()
   {
-    $tuteur_evalue_groupes = TuteurEvalueGroupe::all();
-    return view('tuteur.groupe', compact('tuteur_evalue_groupes'));
+    //$tuteur_evalue_groupes = TuteurEvalueGroupe::all();
+    return view('tuteur.groupe');
   }
 
   public function traitementTuteurEvalueGroupe(Request $request)
@@ -111,7 +144,7 @@ class TuteurController extends Controller
     $tuteur_evalue_etudiant = new TuteurEvalueEtudiant;
     $tuteur_evalue_etudiant->resolution_conflits = $request->input('participationResolutionConflits');
     $tuteur_evalue_etudiant->implication_coordination = $request->input('implicationCoordination');
-    $tuteur_evalue_etudiant->qualite_taches = $request->input('ampleurQualiteTachesRealisees');
+    $tuteur_evalue_etudiant->qualite_taches_realisees = $request->input('ampleurQualiteTachesRealisees');
     $tuteur_evalue_etudiant->prise_initiatives = $request->input('priseInitiatives');
     $tuteur_evalue_etudiant->connaitre_projet = $request->input('connaitreProjet');
     $tuteur_evalue_etudiant->repondre_questions = $request->input('savoirRepondreQuestions');
@@ -122,118 +155,138 @@ class TuteurController extends Controller
     return back()->with("successAdd", 'Note enregistrée avec succès.');
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  public function tuteurCreeGroupe()
+  public function creerGroupe()
   {
-    //   $tuteur_cree_groupes = TuteurCreeGroupe::all();
     return view('tuteur.creergroupe');
   }
 
-  public function traitementTuteurCreeGroupe(Request $request)
+  public function traitemenCreerGroupe(Request $request)
   {
-    // Validation des données
+    //validation des données
     $request->validate([
-      'nomResponsable' => 'required|string|max:255',
       'codeGroupe' => 'required|string|max:255',
-      'nomEtudiant' => 'required|integer|max:255',
+      'nomEtudiant' => 'required|string|max:255',
       'prenomsEtudiant' => 'required|string|max:255',
       'email' => 'required|string|max:255',
-      'contact' => 'required|string|max:255',
+      'tel' => 'required|string|max:255',
     ]);
 
-    $tuteur_cree_groupe = new TuteurCreeGroupe;
-    $tuteur_cree_groupe->nom_responsable = $request->input('nomResponsable');
-    $tuteur_cree_groupe->code_groupe = $request->input('codeGroupe');
-    $tuteur_cree_groupe->nom_etudiant = $request->input('nomEtudiant');
-    $tuteur_cree_groupe->prenom_etudiant = $request->input('prenomsEtudiant');
-    $tuteur_cree_groupe->email = $request->input('email');
-    $tuteur_cree_groupe->contact = $request->input('contact');
-    $tuteur_cree_groupe->save();
-    return back()->with("successAdd", 'Le groupe a été créé avec succès.');
+    $tuteur_creer_groupe = new CreerGroupe;
+    $tuteur_creer_groupe->code_groupe = $request->input('codeGroupe');
+    $tuteur_creer_groupe->nom_etudiant = $request->input('nomEtudiant');
+    $tuteur_creer_groupe->prenom_etudiant = $request->input('prenomsEtudiant');
+    $tuteur_creer_groupe->email = $request->input('email');
+    $tuteur_creer_groupe->telephone = $request->input('tel');
+    $tuteur_creer_groupe->save();
+    return back()->with("successAdd", 'Enregistrement a été un succès.');
   }
 
 
+  public function phaseRealisationProjet()
+  {
+    return view('tuteur.realisationprojet');
+  }
 
+  public function traitementPhaseRealisationProjet(Request $request)
+  {
+    //Validation des données
+    $request->validate([
+     'inputNomEtudiant' => 'required|string|max:255',
+      'phase1' => 'required|string|max:255',
+      'phase2' => 'required|string|max:255',
+      'phase3' => 'required|string|max:255',
+      'phase4' => 'required|string|max:255',
+      'phase5' => 'required|string|max:255',
+      'phase6' => 'required|string|max:255',
+      'phase7' => 'required|string|max:255',
+      'phase8' => 'required|string|max:255',
+      'phase9' => 'required|string|max:255',
+      'phase10' => 'required|string|max:255',
+      'phase11' => 'required|string|max:255',
+      'phase12' => 'required|string|max:255',
+      'phase13' => 'required|string|max:255',
+      'phase14' => 'required|string|max:255',
+      'phase15' => 'required|string|max:255',
+      'phase16' => 'required|string|max:255',
+      'phase17' => 'required|string|max:255',
+      'phase18' => 'required|string|max:255',
+      'phase19' => 'required|string|max:255',
+      'phase20' => 'required|string|max:255'
+    ]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    $phase_realisation_projet = new PhaseRealisationProjet;
+    $phase_realisation_projet->nom_prenoms_etudiant = $request->input('inputNomEtudiant');
+    $phase_realisation_projet->organisation_etudiants_groupes_1 = $request->input('phase1');
+    $phase_realisation_projet->organisation_etudiants_groupes_2 = $request->input('phase2');
+    $phase_realisation_projet->organisation_etudiants_groupes_3 = $request->input('phase3');
+    $phase_realisation_projet->organisation_etudiants_groupes_4 = $request->input('phase4');
+    $phase_realisation_projet->enquete_preliminaire_1 = $request->input('phase5');
+    $phase_realisation_projet->enquete_preliminaire_2 = $request->input('phase6');
+    $phase_realisation_projet->enquete_preliminaire_3 = $request->input('phase7');
+    $phase_realisation_projet->enquete_preliminaire_4 = $request->input('phase8');
+    $phase_realisation_projet->enquete_preliminaire_5 = $request->input('phase9');
+    $phase_realisation_projet->elaboration_matrice_activites_chronologique_groupe_1 = $request->input('phase10');
+    $phase_realisation_projet->elaboration_matrice_activites_chronologique_groupe_2= $request->input('phase11');
+    $phase_realisation_projet->elaboration_matrice_activites_chronologique_groupe_3 = $request->input('phase12');
+    $phase_realisation_projet->elaboration_matrice_activites_chronologique_groupe_4 = $request->input('phase13');
+    $phase_realisation_projet->realisation_taches_1 = $request->input('phase14');
+    $phase_realisation_projet->realisation_taches_2 = $request->input('phase15');
+    $phase_realisation_projet->realisation_taches_3 = $request->input('phase16');
+    $phase_realisation_projet->redaction_rapport_activites_1= $request->input('phase17');
+    $phase_realisation_projet->redaction_rapport_activites_2 = $request->input('phase18');
+    $phase_realisation_projet->redaction_rapport_activites_3 = $request->input('phase19');
+    $phase_realisation_projet->redaction_rapport_activites_4 = $request->input('phase20');
+    $phase_realisation_projet->save();
+    return back()->with("successAdd", 'Enregistrement a été un succès.');
+  }
 
   public function tuteurAttribueRole()
   {
     // $tuteur_attribue_roles = TuteurAttribueRole::all();
-    // return view('tuteur.role', compact('tuteur_attribue_roles'));
+     return view('tuteur.role');
   }
 
   public function traitementTuteurAttribueRole(Request $request)
   {
-    // Validation des données
-    //$request->validate([
-    // 'groupname' => 'required|string|max:255',
-    // 'studentname' => 'required|string|max:255',
-    // 'assignedrole' => 'required|string|max:255',
-    //]);
+    //Validation des données
+    $request->validate([
+    'groupname' => 'required|string|max:255',
+    'studentname' => 'required|string|max:255',
+    'assignedrole' => 'required|string|max:255',
+    ]);
 
-    // $tuteur_attribue_role = new TuteurAttribueRole;
-    // $tuteur_attribue_role->nom_du_groupe = $request->input('groupname');
-    // $tuteur_attribue_role->etudiant = $request->input('studentname');
-    // $tuteur_attribue_role->role_attribue = $request->input('assignedrole');
-    // $tuteur_attribue_role->save();
-    // return back()->with("successAdd", 'Le rôle a été attribué avec succès.');
+    $tuteur_attribue_role = new TuteurAttribueRole;
+    $tuteur_attribue_role->nom_du_groupe = $request->input('groupname');
+    $tuteur_attribue_role->etudiant = $request->input('studentname');
+    $tuteur_attribue_role->role_attribue = $request->input('assignedrole');
+    $tuteur_attribue_role->save();
+    return back()->with("successAdd", 'Le rôle a été attribué avec succès.');
   }
 
   public function tuteurRapport()
   {
-    // $tuteur_rapports = TuteurRapport::all();
-    // return view('tuteur.rapport', compact('tuteur_rapports'));
+     //$tuteur_rapports = TuteurRapport::all();
+    return view('tuteur.rapport');
   }
 
   public function traitementTuteurRapport(Request $request)
   {
-    // $request->validate([
-    //   'title' => 'required|string|max:255',
-    //   'file' => 'required|mimes:docx,xlsx,pptx,pdf|max:10000000'
-    // ]);
+    $request->validate([
+      'title' => 'required|string|max:255',
+      'file' => 'required|mimes:docx,xlsx,pptx,pdf|max:10000000'
+    ]);
 
-    // $title = $request->input('title');
-    // $file = $request->file('file');
+    $title = $request->input('title');
+    $file = $request->file('file');
 
-    // $fileName = $title . '_' . time() . '.' . $file->getClientOriginalExtension();
+    $fileName = $title . '_' . time() . '.' . $file->getClientOriginalExtension();
 
-    // $path = $file->storeAs('uploads', $fileName);
+    $path = $file->storeAs('uploads', $fileName);
 
-    // $tuteur_rapport = new TuteurRapport;
-    // $tuteur_rapport->nom_du_rapport = $request->input('title');
-    // $tuteur_rapport->file = $request->input('file');
+    $tuteur_rapport = new TuteurRapport;
+    $tuteur_rapport->nom_du_rapport = $request->input('title');
+    $tuteur_rapport->file = $request->input('file');
 
-    // return back()->with("successAdd", 'Votre rapport a été déposé avec succès.');
+    return back()->with("successAdd", 'Votre rapport a été déposé avec succès.');
   }
 }

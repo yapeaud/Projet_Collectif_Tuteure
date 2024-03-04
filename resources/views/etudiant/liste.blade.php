@@ -13,8 +13,10 @@
                     <th scope="col">#</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
-                    <th scope="col">Contact</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Spécialité</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -22,10 +24,11 @@
                 @foreach ($etudiants as $etudiant)
                     <tr>
                         <th scope="row">{{ $etudiant->id_etudiant }}</th>
-                        <td>{{ $etudiant->nom }}</td>
-                        <td>{{ $etudiant->prenom }}</td>
-                        <td>{{ $etudiant->contact }}</td>
+                        <td>{{ $etudiant->nom_etudiant }}</td>
+                        <td>{{ $etudiant->prenom_etudiant }}</td>
                         <td>{{ $etudiant->email }}</td>
+                        <td>{{ $etudiant->telephone }}</td>
+                        <td>{{ $etudiant->specialite }}</td>
                     </tr>
                 @endforeach
 

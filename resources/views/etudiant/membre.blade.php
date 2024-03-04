@@ -26,19 +26,25 @@
                     @csrf
                     <section class="form-row mt-4">
                         <article class="form-group col-md-6">
-                            <label for="inputNom">Nom</label>
-                            <input type="text" class="form-control" id="inputNom" placeholder="Nom de l'évaluer" name="nomEtudiant">
+                            <label for="inputNom">Nom & prénoms</label>
+                            {{-- <input type="text" class="form-control" id="inputNom" placeholder="Nom de l'évaluer" name="nomEtudiant"> --}}
+                            <select id="inputNote" class="form-control" name="nomEtudiant">
+                                <option selected>Nom de l'étudiant</option>
+                                @foreach ($membres as $membre )
+                                    <option>{{ $membre->nom_etudiant }} {{ $membre->prenom_etudiant }}</option>
+                                @endforeach
+                            </select>  
                         </article>
-                        <article class="form-group col-md-6">
-                            <label for="inputPrenom">Prénom</label>
-                            <input type="text" class="form-control" id="inputPrenom" placeholder="Prénom de l'évaluer" name="prenomEtudiant">
-                        </article>
-                    </section>
-                    <section class="form-row">
                         <article class="form-group col-md-6">
                             <label for="inputSpecialite">Spécialité</label>
                             <input type="text" name="specialite" class="form-control" id="inputSpecialite" placeholder="Spécialité de l'évaluer">
                         </article>
+                        {{-- <article class="form-group col-md-6">
+                            <label for="inputPrenom">Prénom</label>
+                            <input type="text" class="form-control" id="inputPrenom" placeholder="Prénom de l'évaluer" name="prenomEtudiant">
+                        </article> --}}
+                    </section>
+                    <section class="form-row">
                         <article class="form-group col-md-6">
                             <label for="inputNote">Note</label>
                             <select id="inputNote" class="form-control" name="noteMembre">
