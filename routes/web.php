@@ -72,30 +72,6 @@ Route::post('/tuteur/dashboard/groupe/role', [TuteurController::class, 'traiteme
 Route::get('/tuteur/dashboard/rapport', [TuteurController::class, 'tuteurRapport'])->name('tuteurRapport');
 Route::post('/tuteur/dashboard/rapport', [TuteurController::class, 'traitementTuteurRapport'])->name('traitementTuteurRapport');
 
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ---------- RESPONSABLE DU SERVICE STAGE ET EMPLOI ----------- */
 Route::get('/sem/connexion', [SemController::class, 'index'])->name('connexion');
 Route::get('/sem/inscription', [SemController::class,'inscription'])->name('inscription');
